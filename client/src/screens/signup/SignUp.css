@@ -1,0 +1,75 @@
+.register_page {
+    margin-top: 2%;
+  }
+  
+  .register {
+    border-radius: 20px;
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 5px rgb(156, 156, 156, 0.2),
+      -1px -1px 5px rgb(156, 156, 156, 0.2);
+    margin: auto;
+    width: 35%;
+    text-align: left;
+  }
+  
+  .register > h4 {
+    color: rgb(85, 84, 84);
+    padding: 20px 0 0 28px;
+  }
+  
+  .register__form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 0 10px;
+  }
+  
+  .register__form > input {
+    max-width: 85%;
+    margin-left: 20px !important;
+    padding: 10px;
+    font-weight: 2px;
+    outline: none;
+    border: none;
+    color: grey !important;
+    background-color: white;
+  }
+  
+  .register__form > button {
+    width: 85%;
+    margin: 20px 0 20px 20px;
+    padding: 10px;
+    text-align: center;
+    color: whitesmoke;
+    background-color: var(--theame-color);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .signin__user {
+    padding: 20px;
+    padding-top: 0;
+    margin-left: 15px;
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .signin__user__signin {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--theame-color);
+  }
+  
+  .signin__user__signin:hover {
+    color: var(--theame-color);
+  }
+  
+  @media screen and (max-width: 800px) {
+    .register {
+      width: fit-content;
+    }
+    .register__form {
+      padding: 10px 10px 0 10px;
+    }
+  }

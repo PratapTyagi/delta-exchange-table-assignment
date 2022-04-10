@@ -1,0 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
+.app {
+  --theame-color: rgb(131, 131, 233);
+}

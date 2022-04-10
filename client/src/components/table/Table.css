@@ -1,0 +1,48 @@
+.table  {
+    max-height: 85vh !important;
+    overflow-y: scroll !important;
+}
+
+.table::-webkit-scrollbar{
+    display: none;
+}
+
+table {
+    padding-left: 10px !important;
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+table > thead > tr > th {
+    text-align: left;
+}
+
+/* table > tbody {
+} */
+
+table > tbody > tr > td {
+    text-align: left;
+    font-size: 14px;
+}
+
+table > tbody > tr > .dark {
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    width: 30px;
+}
+
+table > tbody > tr > i {
+    cursor: pointer;
+    color: black;
+    font-size: 14px;
+    padding: 10px;
+}
+
+table > tbody > tr > i:hover {
+    color: red;
+}
+
+table > tbody > tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
