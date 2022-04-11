@@ -28,20 +28,25 @@ const SignUp = () => {
         "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
       );
 
-    let data = await axios
-      .post("/auth/signup", {
-        email: email.toLowerCase(),
-        password,
-      })
-      .then(({ data: { message, error } }) => {
-        if (error) {
-          console.log(error);
-        } else {
-          alert(message);
-          history("/signin");
-        }
-      })
-      .catch((err) => console.log(err));
+    let {
+      data: { message, error },
+    } = await axios.post("/auth/signup", {
+      email: email.toLowerCase(),
+      password,
+    });
+    if (error) return console.log(error);
+    alert(message);
+
+    // Sign in after sign up
+    let { data } = await axios.post("/auth/signin", {
+      email: email.toLowerCase(),
+      password,
+    });
+
+    if (data.error) return alert(data.error);
+    alert(data.message);
+    localStorage.setItem("user", JSON.stringify(data.user));
+    window.location = "/";
   };
 
   return (

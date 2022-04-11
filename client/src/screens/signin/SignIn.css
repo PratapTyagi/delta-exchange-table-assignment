@@ -1,83 +1,89 @@
 .signin_page {
-    margin-top: 2%;
-  }
-  
+  margin-top: 2%;
+}
+
+.signin_page > .temp_credentials {
+  position: fixed;
+  left: auto;
+  right: 50%;
+}
+
+.signin {
+  border-radius: 20px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 5px rgb(156, 156, 156, 0.2),
+    -1px -1px 5px rgb(156, 156, 156, 0.2);
+  margin: auto;
+  width: 35%;
+  text-align: left;
+}
+
+.signin_page > .info {
+  width: 35%;
+  margin: 0 auto !important;
+  color: grey;
+  text-align: center;
+}
+
+.signin > h4 {
+  color: rgb(85, 84, 84);
+  padding: 20px 0 0 28px;
+}
+
+.signin__form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 0 10px;
+}
+
+.signin__form > input {
+  padding: 10px;
+  max-width: 80%;
+  margin-left: 20px !important;
+  font-weight: 2px;
+  outline: none;
+  border: none;
+  color: grey !important;
+  background-color: white;
+}
+
+.signin__form > button {
+  width: 85%;
+  margin: 20px 0 20px 20px;
+  padding: 10px;
+  text-align: center;
+  color: whitesmoke;
+  background-color: var(--theame-color);
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.register__user {
+  padding: 20px;
+  padding-top: 0;
+  margin-left: 15px;
+  font-size: 14px;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__user__signUp {
+  color: var(--theame-color);
+  padding: 10px;
+}
+
+.register__user__signUp:hover {
+  color: var(--theame-color);
+}
+
+@media screen and (max-width: 800px) {
   .signin {
-    border-radius: 20px;
-    background-color: whitesmoke;
-    box-shadow: 1px 1px 5px rgb(156, 156, 156, 0.2),
-      -1px -1px 5px rgb(156, 156, 156, 0.2);
-    margin: auto;
-    width: 35%;
-    text-align: left;
+    width: fit-content;
   }
-  
-  .signin_page > .info {
-    width: 35%;
-    margin: 0 auto !important;
-    color: grey;
-    text-align: center;
-  }
-  
-  .signin > h4 {
-    color: rgb(85, 84, 84);
-    padding: 20px 0 0 28px;
-  }
-  
   .signin__form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0 0 10px;
+    padding: 10px 10px 0 10px;
   }
-  
-  .signin__form > input {
-    padding: 10px;
-    max-width: 80%;
-    margin-left: 20px !important;
-    font-weight: 2px;
-    outline: none;
-    border: none;
-    color: grey !important;
-    background-color: white;
-  }
-  
-  .signin__form > button {
-    width: 85%;
-    margin: 20px 0 20px 20px;
-    padding: 10px;
-    text-align: center;
-    color: whitesmoke;
-    background-color: var(--theame-color);
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .register__user {
-    padding: 20px;
-    padding-top: 0;
-    margin-left: 15px;
-    font-size: 14px;
-    color: gray;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .register__user__signUp {
-    color: var(--theame-color);
-    padding: 10px;
-  }
-  
-  .register__user__signUp:hover {
-    color: var(--theame-color);
-  }
-  
-  @media screen and (max-width: 800px) {
-    .signin {
-      width: fit-content;
-    }
-    .signin__form {
-      padding: 10px 10px 0 10px;
-    }
-  }
+}

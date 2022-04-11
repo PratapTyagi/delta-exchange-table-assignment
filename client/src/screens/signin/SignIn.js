@@ -72,6 +72,10 @@ const SignIn = () => {
           </Link>
         </p>
       </div>
+      <div className="temp_credentials">
+        <p>tyagipratap111@gmail.com</p>
+        <p>Qwert@9991</p>
+      </div>
     </div>
   );
 };
