@@ -1,12 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./SignIn.css";
 const SignIn = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const history = useNavigate();
 
   // Form submition
   const onSubmit = async (e) => {
@@ -33,7 +32,7 @@ const SignIn = () => {
         } else {
           alert(message);
           localStorage.setItem("user", JSON.stringify(user));
-          history("/");
+          window.location = "/";
         }
       })
       .catch((error) => console.log(error));
