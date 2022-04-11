@@ -14,14 +14,31 @@ const Modal = ({ setOpenModal }) => {
 
   const addData = () => {
     const status = info.status.toLowerCase();
-    if (status != "active" && status != "closed") {
+    let company = info.company.toLowerCase();
+    if (status != "active" && status != "closed")
       return alert("valid status is either active / closed");
-    }
+
+    if (
+      company != "dc united" &&
+      company != "manchester united" &&
+      company != "la galaxy"
+    )
+      return alert(
+        "valid company is: select all / dc united / manchester united / la galaxy "
+      );
+
+    let map = {
+      "dc united": "DC United",
+      "manchester united": "Manchester United",
+      "la galaxy": "LA Galaxy",
+    };
+
     dispatch(
       createData({
         ...info,
         lastUpdated: new Date().toLocaleDateString(),
-        status: status,
+        status,
+        company: map[company],
       })
     );
     setOpenModal(false);

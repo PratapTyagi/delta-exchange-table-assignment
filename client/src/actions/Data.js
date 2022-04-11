@@ -31,7 +31,15 @@ export const deleteData = (id) => async (dispatch, getState) => {
 
 // Company filter
 export const companySort = (categories) => (dispatch, getState) => {
-  const currentData = getState().data;
+  let currentData = localStorage.getItem("tableData")
+    ? JSON.parse(localStorage.getItem("tableData"))
+    : [];
+  if (currentData.length > getState().data) {
+    for (let i = 0; i < currentData.length; i++) {
+      let newState = currentData[i];
+      createData(newState);
+    }
+  }
   const newData = currentData.filter((data) =>
     categories.includes(data.company)
   );

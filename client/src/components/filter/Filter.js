@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { statusSort } from "../../actions/Data";
+import { statusSort, companySort } from "../../actions/Data";
 
-const Filter = () => {
+const Filter = ({ companyCount }) => {
   const dispatch = useDispatch();
   const [showCompany, setShowCompany] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
   const [inputs, setInputs] = useState({
-    selectAll: false,
-    dcUnited: false,
-    manchesterUnited: false,
-    laGalaxy: false,
+    selectAll: true,
+    dcUnited: true,
+    manchesterUnited: true,
+    laGalaxy: true,
   });
   const [status, setStatus] = useState({
     active: true,
@@ -21,15 +21,27 @@ const Filter = () => {
     dispatch(statusSort(status.active, status.closed));
   }, [status]);
 
+  useEffect(() => {
+    let filteredCompanies = [];
+    let map = {
+      selectAll: "Select All",
+      dcUnited: "DC United",
+      manchesterUnited: "Manchester United",
+      laGalaxy: "LA Galaxy",
+    };
+    if (inputs.selectAll) for (let i in inputs) filteredCompanies.push(map[i]);
+    else for (let i in inputs) if (inputs[i]) filteredCompanies.push(map[i]);
+    dispatch(companySort(filteredCompanies));
+  }, [inputs]);
+
   const handleSelect = (e) => {
-    const { name, value } = e.target;
-    if (value) setInputs({ ...inputs, selectAll: false, name: false });
+    const { name, checked } = e.target;
+    if (!checked) setInputs({ ...inputs, selectAll: false, [name]: false });
     else {
       // by changing this value would select all
       let count = 0;
-      for (let i in inputs) if (i == false) count++;
-
-      if (count <= 2) {
+      for (let i in inputs) if (inputs[i] == false) count++;
+      if (count == 2) {
         setInputs({
           selectAll: true,
           dcUnited: true,
@@ -39,7 +51,7 @@ const Filter = () => {
       } else {
         setInputs({
           ...inputs,
-          [name]: value,
+          [name]: checked,
         });
       }
     }
@@ -51,7 +63,7 @@ const Filter = () => {
       <div className="multiselect">
         <div className="selectBox" onClick={() => setShowCompany(!showCompany)}>
           <select>
-            <option>{`Company ($)`}</option>
+            <option>{`Company (${companyCount})`}</option>
           </select>
           <div className="overSelect"></div>
         </div>
@@ -61,7 +73,7 @@ const Filter = () => {
               <input
                 type="checkbox"
                 name="selectAll"
-                defaultChecked={inputs.selectAll}
+                checked={inputs.selectAll}
                 onChange={() =>
                   inputs.selectAll
                     ? setInputs({
@@ -84,7 +96,7 @@ const Filter = () => {
               <input
                 type="checkbox"
                 name="dcUnited"
-                defaultChecked={inputs.dcUnited}
+                checked={inputs.dcUnited}
                 onChange={handleSelect}
               />
               DC United
@@ -93,7 +105,7 @@ const Filter = () => {
               <input
                 type="checkbox"
                 name="manchesterUnited"
-                defaultChecked={inputs.manchesterUnited}
+                checked={inputs.manchesterUnited}
                 onChange={handleSelect}
               />
               Manchester United
@@ -102,7 +114,7 @@ const Filter = () => {
               <input
                 type="checkbox"
                 name="laGalaxy"
-                defaultChecked={inputs.laGalaxy}
+                checked={inputs.laGalaxy}
                 onChange={handleSelect}
               />
               LA Galaxy

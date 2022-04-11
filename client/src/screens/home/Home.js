@@ -19,7 +19,7 @@ const Home = () => {
       </div>
 
       {/* Filter buttons */}
-      <Filter />
+      <Filter companyCount={data.length} />
 
       {/* Data representation */}
       <Table data={data} />
