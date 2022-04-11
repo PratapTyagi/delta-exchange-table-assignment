@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { statusSort } from "../../actions/Data";
 
 const Filter = () => {
+  const dispatch = useDispatch();
   const [showCompany, setShowCompany] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
   const [inputs, setInputs] = useState({
@@ -9,6 +12,14 @@ const Filter = () => {
     manchesterUnited: false,
     laGalaxy: false,
   });
+  const [status, setStatus] = useState({
+    active: true,
+    closed: true,
+  });
+
+  useEffect(() => {
+    dispatch(statusSort(status.active, status.closed));
+  }, [status]);
 
   const handleSelect = (e) => {
     const { name, value } = e.target;
@@ -99,6 +110,7 @@ const Filter = () => {
           </div>
         )}
       </div>
+
       {/* Status filter */}
       <div className="multiselect">
         <div className="selectBox" onClick={() => setShowStatus(!showStatus)}>
@@ -113,7 +125,13 @@ const Filter = () => {
               <input
                 type="checkbox"
                 name="active"
-                defaultChecked={inputs.selectAll}
+                checked={status.active}
+                onChange={() =>
+                  setStatus({
+                    ...status,
+                    active: !status.active,
+                  })
+                }
               />
               Active
             </label>
@@ -121,8 +139,13 @@ const Filter = () => {
               <input
                 type="checkbox"
                 name="closed"
-                defaultChecked={inputs.dcUnited}
-                onChange={handleSelect}
+                checked={status.closed}
+                onChange={() =>
+                  setStatus({
+                    ...status,
+                    closed: !status.closed,
+                  })
+                }
               />
               Closed
             </label>

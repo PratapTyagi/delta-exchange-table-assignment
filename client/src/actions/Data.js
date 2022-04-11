@@ -14,20 +14,8 @@ export const createData = (data) => (dispatch, getState) => {
   const newData = { id: lastIndex, ...data };
 
   dispatch({ type: ADD_DATA, payload: newData });
-  let updatedData = getState().data;
-  updatedData = updatedData.filter((d) => d.id != "0");
+  const updatedData = getState().data;
   localStorage.setItem("tableData", JSON.stringify(updatedData));
-};
-
-// Read data
-export const getData = () => (dispatch, getState) => {
-  return getState.data;
-  // if (getState.data) {
-  //   ret
-  // }
-  // return localStorage.getItem("tableData")
-  //   ? JSON.parse(localStorage.getItem("tableData"))
-  //   : null;
 };
 
 // Delete data
@@ -39,6 +27,8 @@ export const deleteData = (id) => async (dispatch, getState) => {
   } else localStorage.setItem("tableData", JSON.stringify(item));
 };
 
+// Filters
+
 // Company filter
 export const companySort = (categories) => (dispatch, getState) => {
   const currentData = getState().data;
@@ -49,10 +39,24 @@ export const companySort = (categories) => (dispatch, getState) => {
 };
 
 // Status filter
-export const statusSort = (isActive) => (dispatch, getState) => {
-  const currentData = getState().data;
-  const newData = currentData.filter((data) =>
-    isActive ? data.status === "Active" : data.status === "Closed"
-  );
+export const statusSort = (active, closed) => (dispatch, getState) => {
+  let currentData = localStorage.getItem("tableData")
+    ? JSON.parse(localStorage.getItem("tableData"))
+    : [];
+  if (currentData.length > getState().data) {
+    for (let i = 0; i < currentData.length; i++) {
+      let newState = currentData[i];
+      createData(newState);
+    }
+  }
+  let newData;
+
+  if ((active && closed) == true || (!active && !closed) == true) {
+    newData = currentData;
+  } else {
+    if (active)
+      newData = currentData.filter((data) => data.status === "active");
+    else newData = currentData.filter((data) => data.status === "closed");
+  }
   dispatch({ type: STATUS_SORT, payload: newData });
 };

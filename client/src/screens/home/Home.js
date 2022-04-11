@@ -13,7 +13,7 @@ const Home = () => {
       {/* Headers and corresponding buttons */}
       <Header openModal={openModal} setOpenModal={setOpenModal} />
       <hr />
-      {openModal ? <div className="modalDiv">Hello</div> : ""}
+      {openModal ? <div className="modalDiv"></div> : ""}
       <div className="modalContainer">
         {openModal ? <Modal setOpenModal={setOpenModal} /> : ""}
       </div>

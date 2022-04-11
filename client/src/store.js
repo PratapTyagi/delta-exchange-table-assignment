@@ -8,21 +8,12 @@ const currentData = localStorage.getItem("tableData")
   ? JSON.parse(localStorage.getItem("tableData"))
   : {};
 
-const initialValue = {
-  id: "0",
-  name: "Pratap",
-  company: "DC United",
-  status: "Closed",
-  lastUpdated: "20/2/22",
-  notes: "good learner",
-};
-
 const initialState = Object.keys(currentData).length
   ? {
-      data: [initialValue, ...currentData],
+      data: [...currentData],
     }
   : {
-      data: [initialValue],
+      data: [],
     };
 const store = createStore(
   rootReducers,

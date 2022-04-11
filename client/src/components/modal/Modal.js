@@ -13,8 +13,16 @@ const Modal = ({ setOpenModal }) => {
   });
 
   const addData = () => {
+    const status = info.status.toLowerCase();
+    if (status != "active" && status != "closed") {
+      return alert("valid status is either active / closed");
+    }
     dispatch(
-      createData({ ...info, lastUpdated: new Date().toLocaleDateString() })
+      createData({
+        ...info,
+        lastUpdated: new Date().toLocaleDateString(),
+        status: status,
+      })
     );
     setOpenModal(false);
     alert("Successfully added info");
