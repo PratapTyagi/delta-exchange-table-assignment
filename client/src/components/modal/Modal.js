@@ -12,7 +12,8 @@ const Modal = ({ setOpenModal }) => {
     notes: "",
   });
 
-  const addData = () => {
+  const addData = (e) => {
+    e.preventDefault();
     const status = info.status.toLowerCase();
     let company = info.company.toLowerCase();
     if (status != "active" && status != "closed")
@@ -48,7 +49,7 @@ const Modal = ({ setOpenModal }) => {
   return (
     <div className="modal">
       <h3>Add members</h3>
-      <form>
+      <form onSubmit={addData}>
         <h5>Name</h5>
         <input
           type="text"
@@ -73,6 +74,7 @@ const Modal = ({ setOpenModal }) => {
           value={info.notes}
           onChange={(e) => setInfo({ ...info, notes: e.target.value })}
         />
+        <button type="submit" />
       </form>
 
       <div className="actions">
