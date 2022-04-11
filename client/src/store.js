@@ -4,35 +4,26 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import { rootReducers } from "./reducers";
 
-const initialState = {
-  data: [
-    {
-      id: "0",
-      name: "Vishal Patel Sir",
-      company: "LA Galaxy",
-      status: "Active",
-      lastUpdated: "today",
-      notes: "Start-up",
-    },
-    {
-      id: "1",
-      name: "Pratap",
-      company: "DC United",
-      status: "Closed",
-      lastUpdated: "20 feb",
-      notes: "good learner",
-    },
-    {
-      id: "2",
-      name: "Nischay Sharma",
-      company: "Manchester United",
-      status: "Active",
-      lastUpdated: "yesterday",
-      notes: "Noida remote",
-    },
-  ],
+const currentData = localStorage.getItem("tableData")
+  ? JSON.parse(localStorage.getItem("tableData"))
+  : {};
+
+const initialValue = {
+  id: "0",
+  name: "Pratap",
+  company: "DC United",
+  status: "Closed",
+  lastUpdated: "20/2/22",
+  notes: "good learner",
 };
 
+const initialState = Object.keys(currentData).length
+  ? {
+      data: [initialValue, ...currentData],
+    }
+  : {
+      data: [initialValue],
+    };
 const store = createStore(
   rootReducers,
   initialState,
